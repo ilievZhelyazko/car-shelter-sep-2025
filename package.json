@@ -1,0 +1,21 @@
+{
+  "name": "car-shelter-sep-2025",
+  "version": "1.0.0",
+  "description": "softUni js back end Course project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilievZhelyazko/car-shelter-sep-2025.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ilievZhelyazko/car-shelter-sep-2025/issues"
+  },
+  "homepage": "https://github.com/ilievZhelyazko/car-shelter-sep-2025#readme"
+}
