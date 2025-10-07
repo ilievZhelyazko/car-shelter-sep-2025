@@ -5,6 +5,5 @@ softUni js back end Course project
 ## TODOs
 
 - [x] Initiale NodeJS Project
-  - [] dev enviroment
-  - [] dev scrypt
-  - [] Debugging
+  - [x] dev enviroment - [x] dev scrypt - [x] Debugging
+        -[] Add basic http server
