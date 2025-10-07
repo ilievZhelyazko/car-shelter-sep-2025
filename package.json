@@ -4,7 +4,8 @@
   "description": "softUni js back end Course project",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
   },
   "repository": {
     "type": "git",

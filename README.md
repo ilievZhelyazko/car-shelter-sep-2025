@@ -4,5 +4,7 @@ softUni js back end Course project
 
 ## TODOs
 
-- [] Initiale NodeJS Project
-- [] dev scrypt
+- [x] Initiale NodeJS Project
+  - [] dev enviroment
+  - [] dev scrypt
+  - [] Debugging
