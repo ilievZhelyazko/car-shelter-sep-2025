@@ -7,6 +7,23 @@ async function siteCss(params) {}
 const server = http.createServer(async (req, res) => {
   let html;
 
+  if (req.method === "POST") {
+    console.log("Post has been made");
+
+    let data = "";
+    req.on("data", (chunk) => {
+      data += chunk.toString();
+    });
+    req.on("end", () => {
+      const searchParams = new URLSearchParams(data);
+
+      const newCat = Object.fromEntries(searchParams.entries());
+      cats.push(newCat);
+
+      // TODO redirect to home page
+    });
+  }
+
   switch (req.url) {
     case "/":
       html = await homeView();
