@@ -55,8 +55,12 @@ function readFile(path) {
 }
 async function homeView() {
   const html = await readFile("./src/views/home/index.html");
-
-  const catsHtml = cats.map((cat) => catTemplate(cat)).join("\n");
+  let catsHtml = "";
+  if (cats.length > 0) {
+    const catsHtml = cats.map((cat) => catTemplate(cat)).join("\n");
+  } else {
+    catsHtml = "<span>There no add cats</span>";
+  }
 
   const result = html.replace("{(cats)}", catsHtml);
 
