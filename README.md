@@ -21,5 +21,6 @@ softUni js back end Course project
 - [x] conditional cats
 - [x] redirect to home page
 - [x] add cat persistence
-- [] add dynamic beeds
-- [] cashe css
+- [] add dynamic breeds
+- [x] cashe css
+- [x] add unique id to each created cat
