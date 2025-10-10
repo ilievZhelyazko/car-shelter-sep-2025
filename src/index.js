@@ -1,8 +1,9 @@
 import http from "http";
 import fs from "fs/promises";
+import { getCats, saveCat } from "./data.js";
 import cats from "./cats.js";
 
-async function siteCss(params) {}
+//async function siteCss(params) {}
 
 const server = http.createServer(async (req, res) => {
   let html;
@@ -14,14 +15,21 @@ const server = http.createServer(async (req, res) => {
     req.on("data", (chunk) => {
       data += chunk.toString();
     });
-    req.on("end", () => {
+    req.on("end", async () => {
       const searchParams = new URLSearchParams(data);
 
       const newCat = Object.fromEntries(searchParams.entries());
-      cats.push(newCat);
+      await saveCat(newCat);
 
       // TODO redirect to home page
+      res.writeHead(302, {
+        location: "/",
+      });
+
+      res.end();
     });
+
+    return;
   }
 
   switch (req.url) {
@@ -55,9 +63,11 @@ function readFile(path) {
 }
 async function homeView() {
   const html = await readFile("./src/views/home/index.html");
+
+  const cats = await getCats();
   let catsHtml = "";
   if (cats.length > 0) {
-    const catsHtml = cats.map((cat) => catTemplate(cat)).join("\n");
+    catsHtml = cats.map((cat) => catTemplate(cat)).join("\n");
   } else {
     catsHtml = "<span>There no add cats</span>";
   }
