@@ -1,8 +1,9 @@
 import http from "http";
 import fs from "fs/promises";
-import path from "path";
+import cats from "./cats.js";
 
 async function siteCss(params) {}
+
 const server = http.createServer(async (req, res) => {
   let html;
 
@@ -36,8 +37,13 @@ function readFile(path) {
   return fs.readFile(path, { encoding: "utf-8" });
 }
 async function homeView() {
-  const homeHtml = readFile("./src/views/home/index.html");
-  return homeHtml;
+  const html = await readFile("./src/views/home/index.html");
+
+  const catsHtml = cats.map((cat) => catTemplate(cat)).join("\n");
+
+  const result = html.replace("{(cats)}", catsHtml);
+
+  return result;
 }
 async function addBreedView() {
   const html = await fs.readFile("./src/views/addBreed.html", {
@@ -48,6 +54,25 @@ async function addBreedView() {
 async function addCatView() {
   const html = await readFile("./src/views/addCat.html");
   return html;
+}
+
+function catTemplate(cat) {
+  return `         
+    
+    <li>
+            <img
+              src="${cat.imageUrl}"
+              alt="${cat.name}"
+            />
+            <h3>${cat.name}</h3>
+            <p><span>Breed: </span>${cat.breed}</p>
+            <p>
+              <span>Description: </span>${cat.description}</p>
+            <ul class="buttons">
+              <li class="btn edit"><a href="">Change Info</a></li>
+              <li class="btn delete"><a href="">New Home</a></li>
+            </ul>
+          </li>`;
 }
 server.listen(5000);
 console.log("Server is listening on http://localhost:5000....");
