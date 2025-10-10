@@ -48,13 +48,19 @@ const server = http.createServer(async (req, res) => {
     case "/styles/site.css":
       const siteCss = await readFile("./src/styles/site.css");
 
+      res.writeHead(200, {
+        "Content-Type": "text/css",
+        "cache-control": "max-age=10",
+      });
+
       res.write(siteCss);
-      res.end();
-      return;
+      return res.end();
     default:
       return res.end();
   }
-  res.writeHead(200, { "Content-Type": "text/html" });
+  res.writeHead(200, {
+    "Content-Type": "text/html",
+  });
   res.write(html);
   res.end();
 });
